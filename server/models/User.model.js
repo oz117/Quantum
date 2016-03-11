@@ -5,6 +5,7 @@ exports = module.exports = function(app, mongoose) {
     userName : { type: String, required: true, unique: true, default: ''},
     password: { type: String, required: true},
     regId: { type: String, default: '' },
+    isActive: { type: String },
     timeCreated: { type: Date, default: Date.now }
   });
   /**
