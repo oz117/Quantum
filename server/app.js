@@ -5,8 +5,7 @@ var config = require('./config'),
 		express = require('express'),
 		mongoose = require('mongoose'),
 		bodyParser = require('body-parser'),
-		passport = require('passport'),
-		gcm = require('node-gcm');
+		passport = require('passport');
 
 // create express app
 var app = express();
