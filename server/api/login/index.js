@@ -19,7 +19,8 @@ exports.login = function(req, res) {
 			if (!user) {
 				return res.json({ 'code' : '4343', 'error' : 'info' });
 			}
-			req.app.db.models.User.findByIdAndUpdate(user._id, { regId : req.body.regId },
+			var fieldToUpdate = { regId : req.body.regId, isActive: 'yes' };
+			req.app.db.models.User.findByIdAndUpdate(user._id, fieldToUpdate,
 				function(err, user){
 					if (err) {
 						return res.json({ 'code' : '4444', 'exception' : err });
@@ -27,7 +28,7 @@ exports.login = function(req, res) {
 					if (!user) {
 						return res.json({ 'code' : '4343', 'error' : 'Could not set regId' });
 					}
-					return res.json({ 'code' : '4242', 'response' : 'User logged in and regId set' });
+					return res.json({ 'code' : '4242', 'response' : 'User logged in and regId set', 'id' : user.id });
 			});
 		})(req, res);
 };
