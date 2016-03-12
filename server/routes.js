@@ -19,4 +19,12 @@ exports = module.exports = function(app, passport) {
   // password: String
   // regId: String
   app.post('/api/login', require('./api/login').login);
+
+  // To transfer messages
+  // Inside the body set:
+  // key: String
+  // from: String
+  // to: String
+  // msg: String
+  app.post('/api/send', require('./api/send').send);
 }

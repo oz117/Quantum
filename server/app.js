@@ -5,6 +5,7 @@ var config = require('./config'),
 		express = require('express'),
 		mongoose = require('mongoose'),
 		bodyParser = require('body-parser'),
+		gcm = require('node-gcm'),
 		passport = require('passport');
 
 // create express app
@@ -13,6 +14,10 @@ var app = express();
 // mongoose setup
 app.db = mongoose.createConnection(config.mongodb.uri);
 app.db.on('error', console.error.bind(console, 'mongoose connection error: '));
+
+// node-gcm setup
+app.gcm = gcm;
+app.sender = new gcm.Sender(config.gcmApiKey);
 
 // middleware
 app.use(bodyParser.json());
