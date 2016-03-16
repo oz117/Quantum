@@ -32,11 +32,12 @@ exports.send = function(req, res) {
 			}
 			// Creation of the message
 			var message = new req.app.gcm.Message({
-				collapseKey: 'demo',
+				to: recipient.regId,
 		    priority: 'high',
 		    contentAvailable: true,
 		    delayWhileIdle: true,
 		    timeToLive: 3,
+				dry_run: false,
 		    data: {
 		      message: req.body.msg,
 		      fromU: sender.userName
@@ -46,7 +47,7 @@ exports.send = function(req, res) {
 		      body: req.body.msg
 		    }
 			});
-			req.app.sender.sendNoRetry(message, { registrationTokens: recipient.regId },
+			req.app.sender.sendNoRetry(message, { registrationTokens: [recipient.regId] },
 				function(err, response) {
 					if (err) {
 						return res.json({ 'code' : '4444', 'exception' : err });
@@ -55,4 +56,4 @@ exports.send = function(req, res) {
 				});
 		});
 	});
-}
+};

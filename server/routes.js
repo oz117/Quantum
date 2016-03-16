@@ -11,6 +11,7 @@ exports = module.exports = function(app, passport) {
   // Inside the body set:
   // userName: String
   // password: String
+  // regId: String
   app.post('/api/createUser', require('./api/createUser').createUser);
 
   // For loging a user
