@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "A simple server to transfer encrypted messages.",
   "scripts": {
-    "start": "grunt"
+    "start": "node app.js",
+    "dev": "grunt"
   },
   "main": "app.js",
   "repository": "",
@@ -24,6 +25,10 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-newer": "^1.1.2",
     "grunt-nodemon": "^0.4.1"
+  },
+  "engines": {
+      "node" : ">=4.4.0",
+      "npm" : ">=2.14.20"
   },
   "author": "Andre Paulos",
   "license": "BSD-2-Clause"
