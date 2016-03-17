@@ -3,7 +3,7 @@
 // Send a message to a user using google cloud messaging
 exports.send = function(req, res) {
 	if (!req.body.key) {
-		return res.json({ 'code' : '4343', 'error' : 'user name required' });
+		return res.json({ 'code' : '4343', 'error' : 'key required' });
 	}
 	if (!req.body.from) {
 		return res.json({ 'code' : '4343', 'error' : 'sender required' });

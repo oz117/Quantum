@@ -6,8 +6,10 @@ exports = module.exports = function(app, mongoose) {
     password: { type: String, required: true},
     regId: { type: String, default: '' },
     isActive: { type: String },
+    friends: { type: Array, default: [] },
     timeCreated: { type: Date, default: Date.now }
   });
+
   /**
   * Encrypts the password using bcrypt
   * password: String
