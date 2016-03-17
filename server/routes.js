@@ -34,4 +34,9 @@ exports = module.exports = function(app, passport) {
   // key: String
   // userName: String
   app.post('/api/addFriend', require('./api/addFriend').addFriend);
+
+  // To list all friends
+  // Inside the body set:
+  // key: String
+  app.post('/api/listFriends', require('./api/listFriends').listFriends);
 };
