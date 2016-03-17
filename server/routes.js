@@ -28,4 +28,10 @@ exports = module.exports = function(app, passport) {
   // to: String
   // msg: String
   app.post('/api/send', require('./api/send').send);
-}
+
+  // To add a friend
+  // Inside the body set:
+  // key: String
+  // userName: String
+  app.post('/api/addFriend', require('./api/addFriend').addFriend);
+};
