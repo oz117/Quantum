@@ -6,7 +6,7 @@
 /*   By: paulos_a <paulos_a@epitech.eu>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 12:10:22 by paulos_a          #+#    #+#             */
-/*   Updated: 2016/03/18 12:10:22 by paulos_a         ###   ########          */
+/*   Updated: 2016/03/18 15:09:41 by paulos_a         ###   ########          */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ exports.login = function(req, res) {
 				return res.json({ 'code' : '4444', 'exception' : err });
 			}
 			if (!user) {
-				return res.json({ 'code' : '4343', 'error' : 'info' });
+				return res.json(info);
 			}
 			var fieldToUpdate = { regId : req.body.regId, isActive: 'yes' };
-			req.app.db.models.User.findByIdAndUpdate(user._id, fieldToUpdate,
+			req.app.db.models.User.findByIdAndUpdate(user.id, fieldToUpdate,
 				function(err, user){
 					if (err) {
 						return res.json({ 'code' : '4444', 'exception' : err });

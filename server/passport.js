@@ -6,7 +6,7 @@
 /*   By: paulos_a <paulos_a@epitech.eu>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 12:08:36 by paulos_a          #+#    #+#             */
-/*   Updated: 2016/03/18 12:08:37 by paulos_a         ###   ########          */
+/*   Updated: 2016/03/18 15:09:13 by paulos_a         ###   ########          */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ exports = module.exports = function(app, passport) {
 		function(username, password, done) {
 			var conditions = { userName: username };
 			app.db.models.User.findOne(conditions, function(err, user) {
-				console.log("Hola!");
 				if (err) {
 					return done(err);
 				}

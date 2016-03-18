@@ -6,7 +6,7 @@
 /*   By: paulos_a <paulos_a@epitech.eu>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 12:08:25 by paulos_a          #+#    #+#             */
-/*   Updated: 2016/03/18 12:08:27 by paulos_a         ###   ########          */
+/*   Updated: 2016/03/18 15:00:45 by paulos_a         ###   ########          */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,9 @@ exports = module.exports = function(app, passport) {
   // Inside the body set:
   // key: String
   app.post('/api/listFriends', require('./api/listFriends').listFriends);
+
+  // To logout of the server
+  // Inside the body set:
+  // key: String
+  app.post('/api/logout', require('./api/logout').logout);
 };
