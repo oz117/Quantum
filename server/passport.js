@@ -6,7 +6,7 @@
 /*   By: paulos_a <paulos_a@epitech.eu>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 12:08:36 by paulos_a          #+#    #+#             */
-/*   Updated: 2016/03/18 17:31:05 by paulos_a         ###   ########          */
+/*   Updated: 2016/03/18 17:58:22 by paulos_a         ###   ########          */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ exports = module.exports = function(app, passport) {
 					return done(null, false, { 'code' : '4343', 'error' : 'Unknow user'});
 				}
 				return done(null, user);
-				// app.db.models.User.validatePassword(password, user.password, function(err, isValid) {
-				// 	if (err) {
-				// 		return done(err);
-				// 	}
-				// 	if (!isValid) {
-				// 		return done(null, false, { 'code' : '4343', 'error' : 'Wrong password'});
-				// 	}
-				// 	return done(null, user);
-				// });
+				app.db.models.User.validatePassword(password, user.password, function(err, isValid) {
+					if (err) {
+						return done(err);
+					}
+					if (!isValid) {
+						return done(null, false, { 'code' : '4343', 'error' : 'Wrong password'});
+					}
+					return done(null, user);
+				});
 			});
 		}
 	));
