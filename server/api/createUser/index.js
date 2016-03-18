@@ -6,7 +6,7 @@
 /*   By: paulos_a <paulos_a@epitech.eu>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 12:10:14 by paulos_a          #+#    #+#             */
-/*   Updated: 2016/03/18 12:10:33 by paulos_a         ###   ########          */
+/*   Updated: 2016/03/18 15:42:52 by paulos_a         ###   ########          */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,23 @@ exports.createUser = function(req, res) {
 		if (user) {
 			return res.json({ 'code' : '4343', 'error' : 'userName already exists' });
 		}
+		var fieldToSet = {
+			userName: req.body.userName,
+			password: req.body.password,
+			regId: req.body.regId,
+			isActive: 'yes'
+		};
 		// Hashes the user password
-		req.app.db.models.User.encryptPassword(req.body.password, function(err, hash) {
-			if (err) {
-				return res.json({ 'code' : '4444', 'exception' : 'password hash failed' });
-			}
-			var fieldToSet = {
-				userName: req.body.userName,
-				password: hash,
-				regId: req.body.regId,
-				isActive: 'yes'
-			};
+		// req.app.db.models.User.encryptPassword(req.body.password, function(err, hash) {
+		// 	if (err) {
+		// 		return res.json({ 'code' : '4444', 'exception' : 'password hash failed' });
+		// 	}
+		// 	var fieldToSet = {
+		// 		userName: req.body.userName,
+		// 		password: hash,
+		// 		regId: req.body.regId,
+		// 		isActive: 'yes'
+		// 	};
 			// Adds the user to the database
 			req.app.db.models.User.create(fieldToSet, function(err, user) {
 				if (err) {
@@ -48,6 +54,6 @@ exports.createUser = function(req, res) {
 				}
 				return res.json({ 'code' : '4242', 'response' : 'user created', 'id' : user.id });
 			});
-		});
+		// });
 	});
 };
