@@ -6,7 +6,7 @@
 /*   By: paulos_a <paulos_a@epitech.eu>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 12:10:06 by paulos_a          #+#    #+#             */
-/*   Updated: 2016/03/18 17:58:31 by paulos_a         ###   ########          */
+/*   Updated: 2016/03/18 18:50:34 by paulos_a         ###   ########          */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ exports = module.exports = function(app, mongoose) {
         return done(err);
       }
       bcrypt.hash(password, salt, function(err, hash) {
-        return done(err, hash);
+        return done(null, hash);
       });
     });
   };

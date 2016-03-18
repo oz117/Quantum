@@ -6,7 +6,7 @@
 /*   By: paulos_a <paulos_a@epitech.eu>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 12:08:36 by paulos_a          #+#    #+#             */
-/*   Updated: 2016/03/18 17:58:22 by paulos_a         ###   ########          */
+/*   Updated: 2016/03/18 18:57:13 by paulos_a         ###   ########          */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ exports = module.exports = function(app, passport) {
 		},
 		function(username, password, done) {
 			var conditions = { userName: username };
+			var bcrypt = require('bcrypt');
+
 			app.db.models.User.findOne(conditions, function(err, user) {
 				if (err) {
 					return done(err);
@@ -29,8 +31,7 @@ exports = module.exports = function(app, passport) {
 				if (!user){
 					return done(null, false, { 'code' : '4343', 'error' : 'Unknow user'});
 				}
-				return done(null, user);
-				app.db.models.User.validatePassword(password, user.password, function(err, isValid) {
+		    bcrypt.compare(password, user.password, function(err, isValid) {
 					if (err) {
 						return done(err);
 					}
@@ -38,7 +39,7 @@ exports = module.exports = function(app, passport) {
 						return done(null, false, { 'code' : '4343', 'error' : 'Wrong password'});
 					}
 					return done(null, user);
-				});
+		    });
 			});
 		}
 	));
