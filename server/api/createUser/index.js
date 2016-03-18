@@ -34,7 +34,6 @@ exports.createUser = function(req, res) {
 				if (err) {
 					return res.json({ 'code' : '4444', 'exception' : 'user creation failed' });
 				}
-				console.log('User created');
 				return res.json({ 'code' : '4242', 'response' : 'user created', 'id' : user.id });
 			});
 		});
