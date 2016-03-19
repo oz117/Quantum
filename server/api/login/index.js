@@ -6,7 +6,7 @@
 /*   By: paulos_a <paulos_a@epitech.eu>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 12:10:22 by paulos_a          #+#    #+#             */
-/*   Updated: 2016/03/19 23:52:35 by paulos_a         ###   ########          */
+/*   Updated: 2016/03/20 00:11:23 by paulos_a         ###   ########          */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ exports.login = function(req, res) {
 	if (!req.body.regId) {
 		return res.json({ 'code' : '4343', 'error' : 'regId required' });
 	}
-	req.app.db.models.User.findOne({ userName: userName}, function(err, user) {
+	req.app.db.models.User.findOne({ userName: req.body.userName }, function(err, user) {
 		if (err) {
 			return res.json({ 'code' : '4444', 'exception' : err });
 		}
 		if (!user) {
 			return res.json({ 'code' : 4343, 'error' : 'unknow user' });
 		}
-		if (user.password === req.body.password) {
+		if (user.password !== req.body.password) {
 			return res.json({ 'code' : 4343, 'error' : 'wrong password' });
 		}
 		var fieldToUpdate = { regId : req.body.regId, isActive: 'yes' };
